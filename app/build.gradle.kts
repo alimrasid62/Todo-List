@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -36,6 +37,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    configurations.all {
+        exclude(group = "com.intellij", module = "annotations")
+    }
+
 }
 
 dependencies {
@@ -49,15 +55,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Room
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
 
-// ViewModel & LiveData
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
-// Coroutines
     implementation(libs.kotlinx.coroutines.android)
 
 }
