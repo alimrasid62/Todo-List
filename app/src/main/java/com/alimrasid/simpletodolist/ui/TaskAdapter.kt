@@ -17,6 +17,7 @@ class TaskAdapter(
         fun bind(task: Task) {
             binding.tvTitle.text = task.title
             binding.tvCategory.text = task.category
+            binding.textViewDescription.text = task.description
             binding.checkboxDone.isChecked = task.isDone
 
             binding.checkboxDone.setOnCheckedChangeListener { _, _ ->

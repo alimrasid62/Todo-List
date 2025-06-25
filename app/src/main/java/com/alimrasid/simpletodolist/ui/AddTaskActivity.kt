@@ -30,10 +30,11 @@ class AddTaskActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             val title = binding.etTitle.text.toString().trim()
             val category = binding.etCategory.text.toString().trim()
+            val description = binding.editTextDescription.text.toString()
             val dueDate = System.currentTimeMillis() + 60 * 60 * 1000 // 1 jam dari sekarang (sementara)
 
             if (title.isNotEmpty() && category.isNotEmpty()) {
-                val task = Task(title = title, category = category, description = null, dueDate = dueDate)
+                val task = Task(title = title, category = category, description = description, dueDate = dueDate)
                 viewModel.insert(task)
                 viewModel.allTasks.observe(this) { tasks ->
                     val lastTask = tasks.lastOrNull()
