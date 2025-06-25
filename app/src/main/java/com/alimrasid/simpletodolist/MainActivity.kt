@@ -3,8 +3,10 @@ package com.alimrasid.simpletodolist
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alimrasid.simpletodolist.data.entity.Task
 import com.alimrasid.simpletodolist.databinding.ActivityMainBinding
 import com.alimrasid.simpletodolist.ui.AddTaskActivity
 import com.alimrasid.simpletodolist.ui.TaskAdapter
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter = TaskAdapter(
             onCheckChanged = { task -> viewModel.update(task.copy(isDone = !task.isDone)) },
-            onDeleteClicked = { task -> viewModel.delete(task) }
+            onDeleteClicked = { task -> showDeleteCOnfirm(task) }
         )
 
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(this)
@@ -39,5 +41,16 @@ class MainActivity : AppCompatActivity() {
         binding.fabAddTask.setOnClickListener {
             startActivity(Intent(this, AddTaskActivity::class.java))
         }
+    }
+
+    private fun showDeleteCOnfirm(task: Task) {
+        AlertDialog.Builder(this)
+            .setTitle("Konfirmasi Hapus")
+            .setMessage("Apakah Anda yakin ingin menghapus tugas ini?")
+            .setPositiveButton("Ya") { _, _ ->
+                viewModel.delete(task)
+            }
+            .setNegativeButton("Tidak", null)
+            .show()
     }
 }
