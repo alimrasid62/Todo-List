@@ -15,6 +15,11 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     val allTasks: LiveData<List<Task>>
     val pendingTasks: LiveData<List<Task>>
     val completedTasks: LiveData<List<Task>>
+    var activeTasks: LiveData<List<Task>>
+        get() = this.repository.getActiveTasks()
+    var archivedTasks: LiveData<List<Task>>
+        get() = this.repository.getArchivedTasks()
+
 
     init {
         val taskDao = AppDatabase.getDatabase(application).taskDao()
@@ -23,6 +28,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         allTasks = repository.allTasks
         pendingTasks = repository.pendingTasks
         completedTasks = repository.completedTasks
+        activeTasks = repository.getActiveTasks()
+        archivedTasks = repository.getArchivedTasks()
     }
 
     fun getTasksByCategory(category: String): LiveData<List<Task>> {

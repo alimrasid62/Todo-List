@@ -42,11 +42,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CheckBox
-                android:id="@+id/checkboxDone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selesai"/>
+            <Button
+            android:id="@+id/buttonComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selesai"
+            android:layout_marginStart="8dp"
+            />
 
             <Button
                 android:id="@+id/btnDelete"
@@ -54,6 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text="Hapus"
                 android:layout_marginStart="16dp"/>
+
+
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,6 +1,7 @@
 package com.alimrasid.simpletodolist.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,7 +10,8 @@ import com.alimrasid.simpletodolist.data.entity.Task
 import com.alimrasid.simpletodolist.databinding.ItemTaskBinding
 
 class TaskAdapter(
-    private val onCheckChanged: (Task) -> Unit,
+    private val isArchiveMode: Boolean = false,
+    private val onCompleteClicked: (Task) -> Unit,
     private val onDeleteClicked: (Task) -> Unit
 ) : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffCallback()) {
 
@@ -18,10 +20,14 @@ class TaskAdapter(
             binding.tvTitle.text = task.title
             binding.tvCategory.text = task.category
             binding.textViewDescription.text = task.description
-            binding.checkboxDone.isChecked = task.isDone
 
-            binding.checkboxDone.setOnCheckedChangeListener { _, _ ->
-                onCheckChanged(task)
+            if (isArchiveMode) {
+                binding.buttonComplete.visibility = View.GONE
+            } else {
+                binding.buttonComplete.visibility = View.VISIBLE
+                binding.buttonComplete.setOnClickListener {
+                    onCompleteClicked(task)
+                }
             }
 
             binding.btnDelete.setOnClickListener {
@@ -36,7 +42,8 @@ class TaskAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val task = getItem(position)
+        holder.bind(task)
     }
 }
 

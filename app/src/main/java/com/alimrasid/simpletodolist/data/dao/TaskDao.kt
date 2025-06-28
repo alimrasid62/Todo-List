@@ -33,4 +33,12 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks WHERE isDone = 1 ORDER BY dueDate ASC")
     fun getCompletedTasks(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM tasks WHERE isArchived = 0")
+    fun getActiveTasks(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM tasks WHERE isArchived = 1")
+    fun getArchivedTasks(): LiveData<List<Task>>
+
+
 }

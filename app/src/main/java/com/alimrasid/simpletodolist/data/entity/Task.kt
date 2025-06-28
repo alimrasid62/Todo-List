@@ -10,5 +10,7 @@ data class Task(
     val category: String,
     val description: String,
     val isDone: Boolean = false,
-    val dueDate: Long = 0L
+    val dueDate: Long = 0L ,
+    val isArchived: Boolean = false
+
 )
