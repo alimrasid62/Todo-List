@@ -11,9 +11,7 @@ class TaskRepository(private val taskDao: TaskDao) {
     val completedTasks: LiveData<List<Task>> = taskDao.getCompletedTasks()
 
     fun getActiveTasks(): LiveData<List<Task>> = taskDao.getActiveTasks()
-
     fun getArchivedTasks(): LiveData<List<Task>> = taskDao.getArchivedTasks()
-
 
     fun getTasksByCategory(category: String): LiveData<List<Task>> {
         return taskDao.getTasksByCategory(category)

@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewTasks.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewTasks.adapter = adapter
 
-        viewModel.allTasks.observe(this) { tasks ->
+        viewModel.activeTasks.observe(this) { tasks ->
             adapter.submitList(tasks)
         }
 

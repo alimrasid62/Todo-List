@@ -12,13 +12,13 @@ import kotlinx.coroutines.launch
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: TaskRepository
+
     val allTasks: LiveData<List<Task>>
     val pendingTasks: LiveData<List<Task>>
     val completedTasks: LiveData<List<Task>>
-    var activeTasks: LiveData<List<Task>>
-        get() = this.repository.getActiveTasks()
-    var archivedTasks: LiveData<List<Task>>
-        get() = this.repository.getArchivedTasks()
+    val activeTasks: LiveData<List<Task>>
+    val archivedTasks: LiveData<List<Task>>
+
 
 
     init {
@@ -30,6 +30,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         completedTasks = repository.completedTasks
         activeTasks = repository.getActiveTasks()
         archivedTasks = repository.getArchivedTasks()
+
+
     }
 
     fun getTasksByCategory(category: String): LiveData<List<Task>> {
@@ -47,4 +49,6 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     fun delete(task: Task) = viewModelScope.launch {
         repository.delete(task)
     }
+
 }
+
