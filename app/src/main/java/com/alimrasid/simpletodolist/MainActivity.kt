@@ -32,8 +32,16 @@ class MainActivity : AppCompatActivity() {
 
         adapter = TaskAdapter(
             isArchiveMode = false,
-            onCompleteClicked = { task -> showCompleteConfirmation(task) },
-            onDeleteClicked = { task -> showDeleteCOnfirm(task) }
+            onCompleteClicked = { task ->
+                showCompleteConfirmation(task)
+            },
+            onDeleteClicked = { task ->
+                showDeleteCOnfirm(task)
+            },
+            onItemDoubleClick = { task ->
+                // Aksi saat double tap untuk buka detail
+                // contoh: pindah ke halaman detai
+            }
         )
 
         viewModel.archivedTasks.observe(this) { tasks ->

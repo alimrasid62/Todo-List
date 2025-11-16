@@ -5,50 +5,74 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E4E4FF"
     tools:context=".MainActivity">
 
+    <!-- App Bar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        app:title="Notes"
+        app:titleCentered="true"
+        app:titleTextColor="@android:color/white" />
+
+    <!-- Tanggal otomatis -->
+    <TextView
+        android:id="@+id/textDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:textSize="14sp"
+        android:textColor="#555" />
+
+    <!-- Pesan jika list kosong -->
     <TextView
         android:id="@+id/emptyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Belum ada tugas, Tambah tugas Klikk Icon + dibawah !!"
+        android:text="Belum ada tugas, tambah tugas klik ikon + di bawah!"
         android:textSize="16sp"
         android:visibility="gone"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        android:textColor="#777"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:textColor="#777" />
 
+    <!-- List tugas -->
     <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewTasks"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"/>
+        android:id="@+id/recyclerViewTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="64dp"
+        android:padding="12dp"
+        android:clipToPadding="false" />
 
+    <!-- FAB Arsip (kiri bawah) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonGoToArchive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_archive"
+        app:tint="@color/blue"
+        app:maxImageSize="28dp"
+        android:contentDescription="Lihat Arsip" />
+
+    <!-- FAB Tambah (kanan bawah) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Add Task"
-        android:src="@drawable/ic_add"
-        app:layout_anchorGravity="bottom|end"
-        android:layout_margin="16dp"
-        app:layout_anchor="@id/recyclerViewTasks"
-        app:tint="@android:color/black" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonGoToArchive"
-        android:text="Lihat Arsip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_archive"
-        app:layout_anchorGravity="bottom"
-        android:layout_margin="16dp"
-        app:layout_anchor="@id/recyclerViewTasks"
-        app:tint="@android:color/black"/>
-
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/blue"
+        app:srcCompat="@drawable/ic_add"
+        app:tint="@android:color/white"
+        app:maxImageSize="28dp"
+        android:contentDescription="Tambah Tugas" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

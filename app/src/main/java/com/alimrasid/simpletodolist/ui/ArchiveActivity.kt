@@ -30,7 +30,8 @@ class ArchiveActivity : AppCompatActivity() {
         adapter = TaskAdapter(
             isArchiveMode = true,
             onCompleteClicked = {},
-            onDeleteClicked = { task -> showDeleteConfirmation(task) }
+            onDeleteClicked = { task -> showDeleteConfirmation(task) },
+            onItemDoubleClick = TODO()
         )
 
         binding.recyclerViewArchived.adapter = adapter
